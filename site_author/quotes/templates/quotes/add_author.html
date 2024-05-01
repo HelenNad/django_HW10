@@ -1,0 +1,20 @@
+{% extends "quotes/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<form method="POST" action="{% url 'quotes:auth_ur' %}">
+    {% csrf_token %}
+    <div class="container mt-3">
+        <label class="form-label">Enter the author name:
+         {{form.name}}</label>
+        <span>{{ form.errors.name }}</span>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+</form>
+
+{% endblock %}
+

@@ -1,0 +1,28 @@
+{% extends "quotes/base.html" %}
+
+{% block content %}
+
+<form method="POST" action="{% url 'quotes:quote_ur' %}">
+    {% csrf_token %}
+    <div class="container mt-3">
+        <label class="form-label"> Enter the quote:
+            {{ form.quote }}
+        </label>
+        <span>{{ form.errors.description }}</span>
+    </div>
+    <div class="mb-3">
+        <label> Select authors:
+            <select class="form-select form-select-sm" aria-label="Small select example">
+            <option selected>Open this select menu</option>
+                {% for a in author %}
+                <option value="{{a.name}}">{{a.name}}</option>
+                {% endfor %}
+            </select>
+        </label>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+</form>
+{% endblock %}
